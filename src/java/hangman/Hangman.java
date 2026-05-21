@@ -2,11 +2,22 @@ package hangman;
 
 import java.util.*;
 import java.util.ArrayList;
-
+/**
+ * A simple console Hangman game.
+ * The player guesses letters until they complete the word or run out of lives.
+ */
 public class Hangman {
-  ///////////////////////////////////////    METHODS     ////////////////////////////////////////
+
    
-    ////CHECK IF THE LETTER MATCHES THE WORD TO GUESS
+/**
+ * Checks whether the entered letter appears in the word to guess.
+ * If it appears, the letter is revealed in the hidden word.
+ *
+ * @param indexedWord the original word as a character array
+ * @param hiddenIndexedWord the hidden word with guessed letters revealed
+ * @param letter the letter entered by the player
+ * @return true if the letter appears in the word, false otherwise
+ */
     public static boolean matches(char[] indexedWord,char[] hiddenIndexedWord, char letter)
     {   
         boolean matches = false; 
@@ -23,8 +34,14 @@ public class Hangman {
         return matches;
     }
 
-    ///CHECK IF THE ENTERED LETTER HAS ALREADY BEEN USED
-    public static boolean repeated(ArrayList<Character> usedLetters, char letter)
+/**
+ * Checks whether a letter has already been used by the player.
+ *
+ * @param usedLetters the list of letters already entered
+ * @param letter the letter to check
+ * @return true if the letter was already used, false otherwise
+ */
+public static boolean repeated(ArrayList<Character> usedLetters, char letter)
     {
         if(usedLetters.contains(letter))
         {
@@ -34,8 +51,13 @@ public class Hangman {
         return false;
     }
 
-    ///CHECK IF THE WORD HAS BEEN GUESSED BEFORE RUNNING OUT OF LIVES
-    public static boolean hasBlanks(char[] hiddenIndexedWord)            
+/**
+ * Checks whether the hidden word still contains blank spaces.
+ *
+ * @param hiddenIndexedWord the hidden word as a character array
+ * @return true if there are still unguessed letters, false otherwise
+ */
+public static boolean hasBlanks(char[] hiddenIndexedWord)          
     {
         for(int i = 0; i < hiddenIndexedWord.length; i++)
         {
@@ -48,8 +70,13 @@ public class Hangman {
         return false;
     }
 
-    ///OPTION TO PLAY AGAIN BY PRESSING A KEY
-    public static boolean playAgain(int answer)
+/**
+ * Checks whether the player wants to play again.
+ *
+ * @param answer the player's answer, where 2 means exit
+ * @return true if the player wants to continue, false if they want to exit
+ */
+public static boolean playAgain(int answer)
     {
         return answer != 2;
     }
